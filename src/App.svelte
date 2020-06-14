@@ -1,22 +1,28 @@
-<main>
-  <h1>Hello {name}!</h1>
-  <p>
-    Visit the
-    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-    to learn how to build Svelte apps.
-  </p>
-</main>
+<template>
+  <div id="app">
+    <h1>Hello {name}!</h1>
+    <p>
+      Visit the
+      <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
+      to learn how to build Svelte apps.
+    </p>
+  </div>
+</template>
 
 <script>
   export let name = "World";
 </script>
 
-<style>
-  main {
+<style lang="scss">
+  #app {
     text-align: center;
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
+
+    & > p {
+      color: blue;
+    }
   }
 
   h1 {
@@ -27,7 +33,7 @@
   }
 
   @media (min-width: 640px) {
-    main {
+    #app {
       max-width: none;
     }
   }

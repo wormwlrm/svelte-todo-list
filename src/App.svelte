@@ -1,6 +1,4 @@
 <script>
-  import "bulma/css/bulma.css";
-
   import Navbar from "./components/Navbar.svelte";
   import TodoList from "./components/TodoList.svelte";
   import TodoInput from "./components/TodoInput.svelte";
@@ -8,7 +6,7 @@
   let todos = [
     { id: 0, checked: false, text: "finish Svelte tutorial" },
     { id: 1, checked: false, text: "build an app" },
-    { id: 2, checked: false, text: "world domination" }
+    { id: 2, checked: false, text: "world domination" },
   ];
 
   let todoInput = "";
@@ -43,7 +41,7 @@
     const newTodo = {
       id: ++lastId,
       checked: false,
-      text: todoInput
+      text: todoInput,
     };
 
     todos = [...todos, newTodo];

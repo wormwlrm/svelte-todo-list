@@ -1,40 +1,76 @@
-<template>
-  <div id="app">
-    <h1>Hello {name}!</h1>
-    <p>
-      Visit the
-      <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-      to learn how to build Svelte apps.
-    </p>
-  </div>
-</template>
-
 <script>
-  export let name = "World";
+  import "bulma/css/bulma.css";
+
+  import Navbar from "./components/Navbar.svelte";
+  import TodoList from "./components/TodoList.svelte";
+  import TodoInput from "./components/TodoInput.svelte";
+
+  let todos = [
+    { id: 0, checked: false, text: "finish Svelte tutorial" },
+    { id: 1, checked: false, text: "build an app" },
+    { id: 2, checked: false, text: "world domination" }
+  ];
+
+  let todoInput = "";
+
+  let onHandleKeyup = e => {
+    todoInput = e.target.value;
+
+    if (e.keyCode === 13) {
+      onHandleAdd();
+    }
+  };
+
+  let onHandleCheck = id => {
+    const index = todos.findIndex(todo => todo.id === id);
+    todos[index]["checked"] = !todos[index]["checked"];
+  };
+
+  let onHandleRemove = id => {
+    todos = todos.filter(todo => todo.id !== id);
+  };
+
+  let onHandleModify = (id, text) => {
+    const index = todos.findIndex(todo => todo.id === id);
+    todos[index]["text"] = text;
+  };
+
+  let onHandleAdd = () => {
+    if (!todoInput) {
+      return;
+    }
+
+    const newTodo = {
+      id: ++lastId,
+      checked: false,
+      text: todoInput
+    };
+
+    todos = [...todos, newTodo];
+
+    todoInput = "";
+  };
+
+  $: lastId = todos[todos.length - 1] ? todos[todos.length - 1].id : 0;
 </script>
 
-<style lang="scss">
-  #app {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+<section class="hero is-primary is-fullheight">
+  <div class="hero-head">
+    <Navbar />
+  </div>
 
-    & > p {
-      color: blue;
-    }
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    #app {
-      max-width: none;
-    }
-  }
-</style>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="columns is-desktop">
+        <div class="column"></div>
+        <div class="column">
+          <h1 class="title">Todo List</h1>
+          <h2 class="subtitle">Built with Svelte, Bulma</h2>
+          <TodoInput {todoInput} {onHandleKeyup} {onHandleAdd} />
+          <TodoList {todos} {onHandleCheck} {onHandleRemove} {onHandleModify} />
+        </div>
+        <div class="column"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "@rollup/plugin-node-resolve";
+import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import autoPreprocess from "svelte-preprocess";
@@ -26,6 +27,8 @@ export default {
       },
       preprocess: autoPreprocess(),
     }),
+
+    postcss(),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In

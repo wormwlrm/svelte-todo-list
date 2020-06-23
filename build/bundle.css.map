@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../TodoItem.svelte"
+  ],
+  "sourcesContent": [
+    "<script>export var todo;\nexport var onHandleCheck;\nexport var onHandleRemove;\nexport var onHandleModify;\nvar placeholder = \"할 일을 입력해주세요\";</script>\n\n<style lang=\"scss\">.control.has-icons-left .icon,\n.control.has-icons-right .icon {\n  pointer-events: inherit;\n  transition: color 0.5s;\n  cursor: pointer; }\n  .control.has-icons-left .icon:hover,\n  .control.has-icons-right .icon:hover {\n    color: #363636; }\n\n.control.has-icons-left .input:focus ~ .icon,\n.control.has-icons-right .input:focus ~ .icon {\n  color: #dbdbdb; }\n\n.todo-item--checked {\n  opacity: 0.4; }</style>\n\n<div class=\"field\">\n  <div\n    class=\"control has-icons-left has-icons-right todo-item\"\n    class:todo-item--checked=\"{todo.checked}\"\n  >\n    <input\n      class=\"input\"\n      type=\"text\"\n      {placeholder}\n      bind:value=\"{todo.text}\"\n      on:keyup=\"{e => onHandleModify(todo.id, e.target.value)}\"\n    />\n    <span\n      class=\"icon is-small is-left\"\n      on:click=\"{() => onHandleCheck(todo.id)}\"\n    >\n      <i class=\"fas fa-check\"></i>\n    </span>\n    <span\n      class=\"icon is-small is-right\"\n      on:click=\"{() => onHandleRemove(todo.id)}\"\n    >\n      <i class=\"fas fa-trash\"></i>\n    </span>\n  </div>\n</div>\n"
+  ],
+  "names": [],
+  "mappings": "AAMmB,QAAQ,8BAAe,CAAC,oBAAK,CAChD,QAAQ,+BAAgB,CAAC,KAAK,eAAC,CAAC,AAC9B,cAAc,CAAE,OAAO,CACvB,UAAU,CAAE,KAAK,CAAC,IAAI,CACtB,MAAM,CAAE,OAAO,AAAE,CAAC,AAClB,QAAQ,8BAAe,CAAC,oBAAK,MAAM,CACnC,QAAQ,+BAAgB,CAAC,oBAAK,MAAM,AAAC,CAAC,AACpC,KAAK,CAAE,OAAO,AAAE,CAAC,AAErB,QAAQ,eAAe,CAAC,MAAM,MAAM,CAAG,mCAAK,CAC5C,QAAQ,gBAAgB,CAAC,MAAM,MAAM,CAAG,KAAK,8BAAC,CAAC,AAC7C,KAAK,CAAE,OAAO,AAAE,CAAC,AAEnB,mBAAmB,8BAAC,CAAC,AACnB,OAAO,CAAE,GAAG,AAAE,CAAC"
+}

@@ -1,12 +1,10 @@
 <script>
-  import { createEventDispatcher } from "svelte";
-
-  const dispatch = createEventDispatcher();
-
   export let todo;
   export let onHandleCheck;
   export let onHandleRemove;
   export let onHandleModify;
+
+  let placeholder = "할 일을 입력해주세요";
 </script>
 
 <style lang="scss">
@@ -42,7 +40,7 @@
     <input
       class="input"
       type="text"
-      placeholder="What would you like to do?"
+      {placeholder}
       bind:value="{todo.text}"
       on:keyup="{e => onHandleModify(todo.id, e.target.value)}"
     />

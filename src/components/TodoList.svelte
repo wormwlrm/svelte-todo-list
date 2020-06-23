@@ -9,10 +9,6 @@
   $: remaining = todos.filter(t => !t.checked).length;
 </script>
 
-<style lang="scss">
-
-</style>
-
 <div>
   {#if remaining}
     <p>남은 일이 {remaining}개 남았어요</p>

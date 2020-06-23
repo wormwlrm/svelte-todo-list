@@ -49,7 +49,7 @@
     todoInput = "";
   };
 
-  $: lastId = todos[todos.length - 1] ? todos[todos.length - 1].id : 0;
+  $: lastId = todos[todos.length - 1]?.id || 0;
 </script>
 
 <section class="hero is-primary is-fullheight">

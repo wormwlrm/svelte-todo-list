@@ -25,7 +25,23 @@ export default {
       css: (css) => {
         css.write("public/build/bundle.css");
       },
-      preprocess: autoPreprocess(),
+      preprocess: autoPreprocess({
+        babel: {
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                loose: true,
+                modules: false,
+                targets: {
+                  esmodules: true,
+                },
+              },
+            ],
+          ],
+        },
+        plugins: ["@babel/plugin-proposal-optional-chaining"],
+      }),
     }),
 
     postcss(),
